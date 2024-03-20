@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "cf-captcha-bypass"
+version = "0.1.0"
+description = ""
+authors = ["Cat Work <cat-work@localhost>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+executionEnvironments = [
+  { root = "./", extraPaths = [ "src" ]  }
+]
+
+[tool.black]
+line-length = 79
+
+[tool.isort]
+line_length = 79
+profile = "black"
+
+[tool.ruff]
+line-length = 79
+fixable = ["ALL"]
+unfixable = []
+
