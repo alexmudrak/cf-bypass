@@ -63,10 +63,14 @@ def run_site(url: str):
     image.show()
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) > 1 and sys.argv[1].startswith("http"):
         run_site(sys.argv[1])
         time.sleep(1)
     else:
         print("URL not provided. Please specify a URL as the first argument.")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

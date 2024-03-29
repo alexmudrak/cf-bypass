@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Cat Work <cat-work@localhost>"]
 readme = "README.md"
+packages = [{ include = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -11,10 +12,12 @@ colorama = "^0.4.6"
 seleniumbase = "^4.24.12"
 pillow = "^10.2.0"
 
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+bypass = "src.main:main"
 
 [tool.pyright]
 executionEnvironments = [

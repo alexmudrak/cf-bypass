@@ -31,7 +31,7 @@ You will also need to have ChromeDriver installed and available in your system's
 To use the script, run it from the command line and pass the URL of the webpage as an argument:
 
 ```bash
-python screenshot.py <URL>
+poetry run bypass <URL>
 ```
 
 Replace `<URL>` with the actual URL of the webpage you want to capture.
