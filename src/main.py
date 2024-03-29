@@ -31,20 +31,24 @@ def fix_cf_just_moment(url: str, driver):
     bypass = False
 
     while try_number < TRY_COUNT:
-        color_message("INFO", f"Try bypass CF - {try_number+1}")
+        color_message(
+            "INFO", f"Attempting to bypass Cloudflare - Attempt {try_number+1}"
+        )
 
         driver.uc_open_with_reconnect(url, 3)
 
         if CF_TITLE not in driver.title:
-            color_message("SUCCESS", "Bypass CF")
+            color_message("SUCCESS", "Successfully bypassed Cloudflare.")
             bypass = True
             break
 
         try_number += 1
 
     if not bypass:
-        color_message("ERROR", "Can't bypass CF")
-        raise Exception("CF not bypass")
+        color_message(
+            "ERROR", "Unable to bypass Cloudflare after multiple attempts."
+        )
+        raise Exception("Failed to bypass Cloudflare.")
 
 
 def run_site(url: str):
