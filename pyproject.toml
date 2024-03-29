@@ -7,6 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+colorama = "^0.4.6"
+seleniumbase = "^4.24.12"
+pillow = "^10.2.0"
 
 
 [build-system]
