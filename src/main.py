@@ -1,11 +1,11 @@
+import io
+import sys
 import time
 
 from colorama import Back, Fore, Style
 from PIL import Image
-import io
 from seleniumbase import get_driver
 
-URL = "https://business-monitor.ch/"
 CF_TITLE = "Just a moment"
 TRY_COUNT = 5
 HEADLESS = True
@@ -32,8 +32,8 @@ def fix_cf_just_moment(url: str, driver):
 
     while try_number < TRY_COUNT:
         color_message("INFO", f"Try bypass CF - {try_number+1}")
-        
-        driver.uc_open_with_reconnect(URL, 3)
+
+        driver.uc_open_with_reconnect(url, 3)
 
         if CF_TITLE not in driver.title:
             color_message("SUCCESS", "Bypass CF")
@@ -47,10 +47,10 @@ def fix_cf_just_moment(url: str, driver):
         raise Exception("CF not bypass")
 
 
-def run_site():
+def run_site(url: str):
     driver = get_driver("chrome", headless=HEADLESS, undetectable=True)
 
-    fix_cf_just_moment(URL, driver)
+    fix_cf_just_moment(url, driver)
 
     screenshot_as_png = driver.get_screenshot_as_png()
     driver.quit()
@@ -60,6 +60,9 @@ def run_site():
 
 
 if __name__ == "__main__":
-    run_site()
-
-    time.sleep(1)
+    if len(sys.argv) > 1 and sys.argv[1].startswith("http"):
+        run_site(sys.argv[1])
+        time.sleep(1)
+    else:
+        print("URL not provided. Please specify a URL as the first argument.")
+        sys.exit(1)
