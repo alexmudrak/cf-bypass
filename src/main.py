@@ -8,7 +8,7 @@ from seleniumbase import get_driver
 
 CF_TITLE = "Just a moment"
 TRY_COUNT = 5
-HEADLESS = True
+HEADLESS = False
 
 
 def color_message(type: str, msg: str):
@@ -36,6 +36,13 @@ def fix_cf_just_moment(url: str, driver):
         )
 
         driver.uc_open_with_reconnect(url, 3)
+
+        try:
+            driver.switch_to_frame("iframe")
+            driver.uc_click("span.mark")
+            time.sleep(5)
+        except Exception:
+            pass
 
         if CF_TITLE not in driver.title:
             color_message("SUCCESS", "Successfully bypassed Cloudflare.")
